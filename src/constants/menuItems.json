@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "title": "ToDo App",
+    "active": true,
+    "navigation": "todoApp"
+  },
+  {
+    "id": 2,
+    "title": "Expense Tracker",
+    "active": true,
+    "navigation": "expenseTracker"
+  },
+  {
+    "id": 3,
+    "title": "Password Generator",
+    "active": true,
+    "navigation": "passwordGenerator"
+  },
+  {
+    "id": 4,
+    "title": "About",
+    "active": false,
+    "navigation": "about"
+  }
+  
+]

@@ -1,0 +1,105 @@
+.loginContainer {
+  overflow: hidden;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(to right top, #fff);
+  .login-form-bg {
+    margin: auto;
+    padding: 0 2% 2% 0;
+    height: 100%;
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+  .forgot-password {
+    font-size: 9px;
+    font-weight: bold;
+    justify-content: flex-end;
+    display: flex;
+    cursor: pointer;
+  }
+  .form-control {
+    width: 92%;
+    margin-left: 15px;
+  }
+  .text-center {
+    margin: 15px 12px;
+    color: midnightblue;
+  }
+  .form-label {
+    margin-left: 15px;
+    color: midnightblue;
+  }
+  .login-btn {
+    background-image: linear-gradient(
+      to right,
+      #000b18,
+      #00172d,
+      #00172d,
+      midnightblue,
+      #02386e
+    );
+    color: white !important;
+    width: 50%;
+    margin: auto;
+    margin-top: 25px;
+    margin-left: 25%;
+    height: 35px;
+    border-radius: 5px;
+    border: 1px solid #9269bc;
+  }
+  .social-media-links {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 20px;
+  }
+  .facebook-btn {
+    width: 35px;
+    height: 35px;
+    border-radius: 18px;
+    background-color: #353698;
+    border: 1px solid #353698;
+    color: white;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .twitter-btn {
+    width: 35px;
+    height: 35px;
+    border-radius: 18px;
+    background-color: #6ad3e1;
+    border: 1px solid #6ad3e1;
+    color: white;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .google-btn {
+    width: 35px;
+    height: 35px;
+    border-radius: 18px;
+    background-color: #982430;
+    border: 1px solid #982430;
+    color: white;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .signup-text {
+    text-align: center;
+    color: #3f4554;
+    margin-top: 30px;
+    label {
+      cursor: pointer;
+    }
+    label:hover {
+      text-decoration: underline !important;
+    }
+  }
+}

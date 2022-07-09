@@ -1,0 +1,93 @@
+.passwordGeneratorContainer {
+  background-color: aliceblue;
+  height: 100vh;
+  h1 {
+    margin-top: 10px !important;
+  }
+  .cards-content {
+    justify-content: space-between;
+    display: flex;
+    margin-top: 15vh;
+  }
+  .title {
+    margin-bottom: 40px;
+  }
+  .form-group {
+    label {
+      color: #635666;
+      font-size: larger;
+    }
+    input {
+      text-align: right;
+    }
+  }
+  .checkBoxContainer {
+    padding-bottom: 20px;
+    span {
+      color: #635666;
+    }
+  }
+  .buttonContainer {
+    margin-top: 20px;
+    span {
+      font-size: 12px;
+    }
+  }
+  .card {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 45px 20px;
+    overflow-y: scroll;
+    .buttonContainer {
+      background-image: linear-gradient(to bottom right, #000428, #004e92);
+    }
+  }
+  .view-password {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .password {
+      flex: 7;
+      font-size: 2em;
+      word-break: break-all;
+      text-align: center;
+      align-items: center;
+    }
+    .buttons {
+      flex: 1;
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      .buttonContainer {
+        width: 10vw;
+        span {
+          text-align: center;
+          font-weight: bold;
+          color: #fff;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}
+
+.savePasswordModal {
+  .savePasswordForm {
+    padding: 20px;
+    .mb-3 {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding-bottom: 10px;
+      label {
+        flex: 1;
+      }
+      select,
+      input {
+        flex: 3;
+      }
+      .form-select{
+        padding-right:0 ;
+      }
+    }
+  }
+}
