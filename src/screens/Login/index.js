@@ -51,7 +51,7 @@ const Login = (props) => {
             </Col>
             <Col>
               <Form>
-                <h1 className="text-center">Login</h1>
+                <h1 className="text-center">React Auth Template</h1>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                   <Form.Label>Username</Form.Label>
                   <Form.Control

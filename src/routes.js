@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import { Navigate } from "react-router";
 import ProtectedRoute from "./components/Routes/protectedRoute";
 import LoginRoute from "./components/Routes/loginRoute";
 import PublicRoute from "./components/Routes/publicRoute";
@@ -23,6 +24,7 @@ const Router = () => {
         })}
       </Route>
 
+      <Route path={"*"} element={<Navigate to="/" />} />
 
       <Route element={<ProtectedRoute />}>
         {protectedRoutes.map((route, index) => {

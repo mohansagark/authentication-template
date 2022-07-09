@@ -10,7 +10,7 @@ const ForgotPasswordComponent = () => {
       <Container fluid className="divider-1">
         <Row>
           <Col lg={12}>
-            <h1 className="forgotPs-title">Project Zero</h1>
+            <h1 className="forgotPs-title">Auth Template</h1>
           </Col>
         </Row>
       </Container>

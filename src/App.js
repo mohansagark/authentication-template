@@ -1,18 +1,17 @@
 import "./App.scss";
 import { Container, Card, Row, Col } from "react-bootstrap";
 import menuItems from "./constants/menuItems.json";
- import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { MdLogout } from "react-icons/md";
 import { connect } from "react-redux";
 import { resetUserInfo } from "./store/actions/login.actions";
 import { useState } from "react";
 import { ConditionalModal } from "./components/Modal";
-import ProfileHoc from './helpers/profile';
+import ProfileHoc from "./helpers/profile";
 
 function App({ onLogout }) {
   let navigate = useNavigate();
   const [showLogoutModal, setShowLogoutModal] = useState(false);
-
 
   const logout = () => {
     onLogout();
