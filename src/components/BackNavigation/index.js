@@ -23,7 +23,7 @@ const BackNavigation = ({ title, navigateTo }) => {
 };
 
 BackNavigation.defaultProps = {
-  title: "Project Zero",
+  title: "Auth Template",
   navigateTo: "/",
 };
 

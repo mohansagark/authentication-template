@@ -17,10 +17,10 @@ function App({ onLogout }) {
     onLogout();
   };
   return (
-    <Container fluid className="project-zero-container">
+    <Container fluid className="auth-template-container">
       <Row className="nav">
         <Col xs={9} sm={9} md={9} className="links">
-          <span className="project-title">Project Zero</span>
+          <span className="project-title">Auth Template</span>
         </Col>
 
         <Col xs={2} sm={2} md={2} className="profile-icon">

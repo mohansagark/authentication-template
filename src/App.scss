@@ -1,4 +1,4 @@
-.project-zero-container {
+.auth-template-container {
   overflow: hidden;
   .nav {
     background-image: linear-gradient(to bottom right, #000428, #004e92);
@@ -84,7 +84,7 @@
 
 // Ipad
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
-  .project-zero-container .menu-tiles-container {
+  .auth-template-container .menu-tiles-container {
     margin-right: 0vw;
     margin-left: 0vw;
     flex: 50%;
@@ -97,7 +97,7 @@
 }
 
 .phone {
-  .project-zero-container {
+  .auth-template-container {
     .menu-tiles-container {
       margin-left: 10vw;
       flex-direction: column;
@@ -130,7 +130,7 @@
 }
 
 .phone {
-  .project-zero-container {
+  .auth-template-container {
     .menu-tiles-container {
       justify-content: space-evenly;
       margin-right: 5vw;
