@@ -15,13 +15,11 @@ const login = (state = initialState, action) => {
   switch (action.type) {
     case SET_USER_INFO:
       let temp = { ...state.userInfo, ...action.payload };
-      let googleData = action.payload.iss.includes("google")
-        ? action.payload
-        : {};
-        
+      let googleData =
+        action?.payload?.iss ?? [].includes("google") ? action.payload : {};
       return {
         ...state,
-        isLoggedIn: action?.payload?.email_verified ? true : false,
+        isLoggedIn: action?.payload?.emailVerified ?? false,
         userInfo: temp,
         googleInfo: googleData,
       };

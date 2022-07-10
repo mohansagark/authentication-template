@@ -40,9 +40,9 @@ function App({ onLogout }) {
         </Col>
       </Row>
       <Row className="menu-tiles-container">
-        {menuItems.map((item) => {
+        {menuItems.map((item, index) => {
           return (
-            <Col lg={3} sm={12} md={3} xs={12}>
+            <Col key={String(index)} lg={3} sm={12} md={3} xs={12}>
               <Card
                 key={item.id}
                 onClick={() => {

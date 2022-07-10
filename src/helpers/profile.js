@@ -4,17 +4,12 @@ import Dropdown from "rc-dropdown";
 import { useNavigate } from "react-router-dom";
 import { IoMdPerson } from "react-icons/io";
 
-
 const ProfileHoc = () => {
- let navigate = useNavigate();
- function onSelect({ key }) {
-    console.log(`${key} selected`);
-  }
+  let navigate = useNavigate();
+  function onSelect({ key }) {}
 
-  function onVisibleChange(visible) {
-    console.log(visible);
-  }
-   const menuCallback = () => (
+  function onVisibleChange(visible) {}
+  const menuCallback = () => (
     <Menu onSelect={onSelect}>
       <MenuItem
         key="1"
@@ -34,16 +29,16 @@ const ProfileHoc = () => {
       </MenuItem>
     </Menu>
   );
-    return (
-      <Dropdown
-        trigger={["click"]}
-        overlay={menuCallback}
-        animation="slide-up"
-        onVisibleChange={onVisibleChange}
-      >
-        <IoMdPerson id="dropdown-basic" size={30} />
-      </Dropdown>
-    );
+  return (
+    <Dropdown
+      trigger={["click"]}
+      overlay={menuCallback}
+      animation="slide-up"
+      onVisibleChange={onVisibleChange}
+    >
+      <IoMdPerson id="dropdown-basic" size={30} />
+    </Dropdown>
+  );
 };
 
 export default ProfileHoc;

@@ -1,7 +1,7 @@
 import "./styles.scss";
 import { connect } from "react-redux";
 import { Col, Container, Row, Form } from "react-bootstrap";
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { googleClientId } from "../../config/config";
 import jwtDecode from "jwt-decode";
 import { setUserInfo } from "../../store/actions/login.actions";
@@ -10,10 +10,28 @@ import { FaFacebookF } from "react-icons/fa";
 import { FiTwitter } from "react-icons/fi";
 import { AiOutlineGoogle } from "react-icons/ai";
 import LoginTheme from "../../assets/login-theme1.webp";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../config/firebase";
 
 const Login = (props) => {
   let navigate = useNavigate();
   const { setUserData } = props;
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const onLogin = (e) => {
+    e.preventDefault();
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        setUserData(user);
+        navigate("/");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log({ errorMessage, errorCode });
+      });
+  };
 
   const handleCallbackResponse = useCallback(
     (response) => {
@@ -57,6 +75,10 @@ const Login = (props) => {
                   <Form.Control
                     type="username"
                     placeholder="Type your username"
+                    value={email}
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                    }}
                   />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -64,6 +86,10 @@ const Login = (props) => {
                   <Form.Control
                     type="password"
                     placeholder="Type your password"
+                    value={password}
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                    }}
                   />
                 </Form.Group>
               </Form>
@@ -78,7 +104,11 @@ const Login = (props) => {
                 </Form.Text>
               </Col>
               <div className="button-container">
-                <button type="submit" className="login-btn">
+                <button
+                  type="submit"
+                  className="login-btn"
+                  onClick={(e) => onLogin(e)}
+                >
                   Login
                 </button>
               </div>
@@ -121,7 +151,7 @@ const Login = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    userInfo: state.login.userInfo,
+    userInfo: state.login,
   };
 };
 
