@@ -2,7 +2,7 @@ import "./styles.scss";
 import { connect } from "react-redux";
 import { Col, Container, Row, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import SignUpTheme from "../../assets/sign-up-theme-2.webp";
+import SignUpTheme from "../../assets/sign-up-theme-2.png";
 import {
   createUserWithEmailAndPassword,
   sendEmailVerification,
@@ -31,7 +31,8 @@ const SignUpComponent = (props) => {
     const res = await createUserWithEmailAndPassword(auth, email, password);
 
     if (res.user.email) {
-      sendEmailVerification(auth.currentUser);
+      const emailVerRes = await sendEmailVerification(auth.currentUser);
+      console.log(emailVerRes);
     }
 
     await setDoc(doc(db, "users", res.user.uid), {

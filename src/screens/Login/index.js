@@ -1,23 +1,25 @@
 import "./styles.scss";
 import { connect } from "react-redux";
 import { Col, Container, Row, Form } from "react-bootstrap";
-import { useCallback, useEffect, useState } from "react";
-import { googleClientId } from "../../config/config";
-import jwtDecode from "jwt-decode";
+import { useState } from "react";
 import { setUserInfo } from "../../store/actions/login.actions";
 import { useNavigate } from "react-router-dom";
 import { FaFacebookF } from "react-icons/fa";
 import { FiTwitter } from "react-icons/fi";
 import { AiOutlineGoogle } from "react-icons/ai";
-import LoginTheme from "../../assets/login-theme1.webp";
+import LoginTheme from "../../assets/login-theme1.png";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../config/firebase";
+import { toast } from "react-toastify";
 
 const Login = (props) => {
   let navigate = useNavigate();
-  const { setUserData } = props;
+  const { setUserData, userInfo } = props;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  console.log(userInfo);
+
   const onLogin = (e) => {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
@@ -27,36 +29,11 @@ const Login = (props) => {
         navigate("/");
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log({ errorMessage, errorCode });
+        const errorMessage = error?.message ?? "Something went wrong!!";
+        console.log(error.message, "error");
+        toast.error(errorMessage);
       });
   };
-
-  const handleCallbackResponse = useCallback(
-    (response) => {
-      var userObject = jwtDecode(response.credential);
-      setUserData(userObject);
-      document.getElementById("signInDiv").hidden = true;
-    },
-    [setUserData]
-  );
-
-  useEffect(() => {
-    /* global google */
-    google.accounts.id.initialize({
-      client_id: googleClientId,
-      callback: handleCallbackResponse,
-      auto_select: true,
-    });
-
-    google.accounts.id.renderButton(document.getElementById("signInDiv"), {
-      theme: "outline",
-      size: "large",
-    });
-
-    // google.accounts.id.prompt();
-  }, [handleCallbackResponse]);
 
   return (
     <Container fluid className="loginContainer">
@@ -131,7 +108,6 @@ const Login = (props) => {
                 </Col>
                 <Col lg={3}></Col>
               </Row>
-              {/* <div id="signInDiv" /> */}
               <Row>
                 <Col lg={12}>
                   <h6 className="signup-text">
