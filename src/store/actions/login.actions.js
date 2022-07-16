@@ -6,6 +6,7 @@ import {
 } from "./types";
 import {
   auth,
+  db,
   gitHubProvider,
   googleAuthProvider,
   metaProvider,
@@ -16,9 +17,13 @@ import {
   FacebookAuthProvider,
   signInWithPopup,
   GithubAuthProvider,
+  sendEmailVerification,
+  sendPasswordResetEmail,
+  createUserWithEmailAndPassword,
 } from "firebase/auth";
 import { loginErrors } from "../errors/loginErrors";
 import { startSpinner, stopSpinner } from "./general.actions";
+import { doc, serverTimestamp, setDoc } from "@firebase/firestore";
 
 export const getUserInfo = () => {
   return {
@@ -96,6 +101,88 @@ export const metaLogin = (onSuccess, onError) => async (dispatch) => {
       let user = result.user;
       dispatch(stopSpinner);
       dispatch(setUserInfo({ ...user, token }));
+      onSuccess();
+    })
+    .catch((error) => {
+      let errorMessage = error.message;
+      errorMessage = loginErrors(error) ?? "";
+      onError(errorMessage);
+      dispatch(stopSpinner);
+    });
+};
+
+export const sendVerificationEmail =
+  (email, onSuccess, onError) => async (dispatch) => {
+    dispatch(startSpinner);
+    sendEmailVerification({ email: email })
+      .then((result) => {
+        dispatch(stopSpinner);
+        onSuccess();
+      })
+      .catch((error) => {
+        let errorMessage = error.message;
+        errorMessage = loginErrors(error) ?? "";
+        onError(errorMessage);
+        dispatch(stopSpinner);
+      });
+  };
+
+export const sendpasswordResetEmail =
+  (email, onSuccess, onError) => async (dispatch) => {
+    dispatch(startSpinner);
+    sendPasswordResetEmail(auth, email)
+      .then((result) => {
+        let user = result.user;
+        console.log(user, "user");
+        dispatch(stopSpinner);
+        onSuccess();
+      })
+      .catch((error) => {
+        let errorMessage = error.message;
+        errorMessage = loginErrors(error) ?? "";
+        onError(errorMessage);
+        dispatch(stopSpinner);
+      });
+  };
+
+export const signUpWithEmail =
+  (data, onSuccess, onError) => async (dispatch) => {
+    dispatch(startSpinner);
+    createUserWithEmailAndPassword(auth, data.email, data.password)
+      .then((response) => {
+        console.log(response);
+        if (response.user.email) {
+          sendEmailVerification(auth.currentUser)
+            .then((res) => {
+              onSuccess();
+              dispatch(stopSpinner);
+            })
+            .catch((error) => {
+              let errorMessage = error.message;
+              errorMessage = loginErrors(error) ?? "";
+              onError(errorMessage);
+              dispatch(stopSpinner);
+            });
+        }
+        dispatch(
+          setUserData({ ...data, uid: response.user.uid }, () => {}, onError)
+        );
+      })
+      .catch((error) => {
+        let errorMessage = error.message;
+        errorMessage = loginErrors(error) ?? "";
+        onError(errorMessage);
+        dispatch(stopSpinner);
+      });
+  };
+
+export const setUserData = (data, onSuccess, onError) => async (dispatch) => {
+  dispatch(startSpinner);
+  setDoc(doc(db, "users", data.uid), {
+    ...data,
+    timeStamp: serverTimestamp(),
+  })
+    .then((res) => {
       onSuccess();
     })
     .catch((error) => {

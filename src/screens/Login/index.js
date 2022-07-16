@@ -119,8 +119,8 @@ const Login = (props) => {
                   type="submit"
                   className={
                     email && password.length >= 8
-                      ? "login-btn"
-                      : "login-btn disabled"
+                      ? "login-btn btn"
+                      : "login-btn btn disabled"
                   }
                   onClick={email && password.length >= 8 && ((e) => onLogin(e))}
                 >

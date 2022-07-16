@@ -1,18 +1,28 @@
 import { Container, Row, Col, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import ForgotPassword from "../../assets/forgot-password-img.png";
+import { RiLockPasswordFill } from "react-icons/ri";
 import "./style.scss";
-import { sendPasswordResetEmail } from "firebase/auth";
-import { auth } from "../../config/firebase";
 import { useState } from "react";
+import { toast } from "react-toastify";
+import { connect } from "react-redux";
+import { sendpasswordResetEmail } from "../../store/actions/login.actions";
+import { validateEmail } from "../../helpers/general";
 
-const ForgotPasswordComponent = () => {
+const ForgotPasswordComponent = ({ onForgotPassword }) => {
   let navigate = useNavigate();
   const [email, setEmail] = useState("");
 
-  const onForgotPassword = async (e) => {
+  const forgotPassword = async (e) => {
     e.preventDefault();
-    await sendPasswordResetEmail(auth, email, "http://localhost:3000/login");
+    const successMethod = () => {
+      toast.success(
+        "A passowrd reset mail has been sent to your registered mail address. Please check your email and update your password"
+      );
+    };
+    const errorMethod = (e) => {
+      toast.error(e);
+    };
+    onForgotPassword(email, successMethod, errorMethod);
   };
 
   return (
@@ -27,10 +37,10 @@ const ForgotPasswordComponent = () => {
       <Container fluid className="divider-2">
         <Row>
           <Col lg={4} className="forgotPs-form">
-            <img
-              src={ForgotPassword}
-              alt="forgot password"
+            <RiLockPasswordFill
               className="forgotPs-img"
+              size={100}
+              color={"#191970"}
             />
             <h1 className="forgotPs-label">Forgot Password</h1>
             <Form.Text className="forgotPs-desc">
@@ -48,12 +58,18 @@ const ForgotPasswordComponent = () => {
                 />
                 <button
                   type="submit"
-                  className="submit-btn"
-                  onClick={(e) => {
-                    onForgotPassword(e);
-                  }}
+                  className={
+                    validateEmail(email) ? "submit-btn" : "submit-btn disabled"
+                  }
+                  onClick={
+                    validateEmail(email)
+                      ? (e) => {
+                          forgotPassword(e);
+                        }
+                      : null
+                  }
                 >
-                  Submit
+                  Reset password
                 </button>
               </Form.Group>
             </Form>
@@ -77,4 +93,15 @@ const ForgotPasswordComponent = () => {
   );
 };
 
-export default ForgotPasswordComponent;
+const mapStateToProps = (state) => ({});
+
+const mapDispatchToProps = (dispatch) => ({
+  onForgotPassword: (email, successMethod, errorMethod) => {
+    dispatch(sendpasswordResetEmail(email, successMethod, errorMethod));
+  },
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ForgotPasswordComponent);

@@ -1,17 +1,28 @@
 import { Container, Row, Col, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import ForgotPassword from "../../assets/forgot-password-img.png";
 import "./style.scss";
 import { useState } from "react";
 import { validateEmail } from "../../helpers/general";
+import { FiMail } from "react-icons/fi";
+import { sendpasswordResetEmail } from "../../store/actions/login.actions";
+import { connect } from "react-redux";
+import { toast } from "react-toastify";
 
-const VerifyEmail = () => {
+const VerifyEmail = ({ onResendVerificationEmail }) => {
   let navigate = useNavigate();
   const [email, setEmail] = useState("");
 
   const onVerifyEmail = async (e) => {
-    // e.preventDefault();
-    // await sendPasswordResetEmail(auth, email, "http://localhost:3000/login");
+    e.preventDefault();
+    const successMethod = () => {
+      toast.success(
+        "A verification mail has been sent to your registered email. Please check and verify your email."
+      );
+    };
+    const errorMethod = (e) => {
+      toast.error(e);
+    };
+    onResendVerificationEmail(email, successMethod, errorMethod);
   };
 
   return (
@@ -26,11 +37,7 @@ const VerifyEmail = () => {
       <Container fluid className="divider-2">
         <Row>
           <Col lg={4} className="forgotPs-form">
-            <img
-              src={ForgotPassword}
-              alt="forgot password"
-              className="forgotPs-img"
-            />
+            <FiMail size={100} className="forgotPs-img" color={"#191970"} />
             <h1 className="forgotPs-label">Verify Email</h1>
             <Form.Text className="forgotPs-desc">
               Enter your email and we'll send you a verification link
@@ -42,14 +49,16 @@ const VerifyEmail = () => {
                   placeholder="Enter email"
                   value={email}
                   onChange={(e) => {
-                    validateEmail(e.target.value) && setEmail(e.target.value);
+                    setEmail(e.target.value);
                   }}
                 />
                 <button
                   type="submit"
-                  className="submit-btn"
+                  className={
+                    validateEmail(email) ? "submit-btn" : "submit-btn disabled"
+                  }
                   onClick={
-                    email
+                    validateEmail(email)
                       ? (e) => {
                           onVerifyEmail(e);
                         }
@@ -80,4 +89,12 @@ const VerifyEmail = () => {
   );
 };
 
-export default VerifyEmail;
+const mapStateToProps = (state) => ({});
+
+const mapDispatchToProps = (dispatch) => ({
+  onResendVerificationEmail: (email, successMethod, errorMethod) => {
+    dispatch(sendpasswordResetEmail(email, successMethod, errorMethod));
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(VerifyEmail);

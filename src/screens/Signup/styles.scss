@@ -16,9 +16,12 @@
     margin: auto;
     padding: 0 2% 2% 0;
     height: 100%;
-    border-radius: 12px;
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+  .eye-icon {
+    cursor: pointer;
+    font-size: 20px;
   }
   .forgot-password {
     font-size: 9px;
@@ -26,9 +29,6 @@
     justify-content: flex-end;
     display: flex;
     cursor: pointer;
-  }
-  .form-control {
-    margin: 0 8% 0 15px;
   }
   ::-webkit-input-placeholder {
     color: rgba(midnightblue, 0.35);
@@ -48,7 +48,6 @@
     color: midnightblue;
   }
   .form-label {
-    margin-left: 15px;
     color: midnightblue;
   }
   .login-btn {
@@ -64,9 +63,10 @@
     width: 50%;
     margin-top: 15px;
     margin-left: 15px;
-    height: 35px;
-    border-radius: 5px;
+    height: 40px;
     border: 1px solid #9269bc;
+    font-size: 12px;
+    font-weight: 700;
   }
   .back-to-login {
     display: flex;
@@ -76,6 +76,7 @@
     cursor: pointer;
     margin-top: 5px;
     margin-left: 15px;
+    font-size: 12px;
   }
   .back-to-login:hover {
     text-decoration: underline !important;
