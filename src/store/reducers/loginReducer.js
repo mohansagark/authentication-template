@@ -16,7 +16,9 @@ const login = (state = initialState, action) => {
     case SET_USER_INFO:
       let temp = { ...state.userInfo, ...action.payload };
       let googleData =
-        action?.payload?.iss ?? []?.includes("google") ? action.payload : {};
+        action?.payload?.providerData?.providerId === "google.com"
+          ? action.payload
+          : state.googleInfo;
       return {
         ...state,
         isLoggedIn: action?.payload?.emailVerified ?? false,

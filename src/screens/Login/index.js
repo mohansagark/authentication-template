@@ -1,38 +1,57 @@
 import "./styles.scss";
 import { connect } from "react-redux";
-import { Col, Container, Row, Form } from "react-bootstrap";
+import { Col, Container, Row, Form, InputGroup } from "react-bootstrap";
 import { useState } from "react";
-import { setUserInfo } from "../../store/actions/login.actions";
+import {
+  gitHubLogin,
+  googleLogin,
+  metaLogin,
+  userEmailLogin,
+} from "../../store/actions/login.actions";
 import { useNavigate } from "react-router-dom";
-import { FaFacebookF } from "react-icons/fa";
-import { FiTwitter } from "react-icons/fi";
-import { AiOutlineGoogle } from "react-icons/ai";
+import { TbBrandMeta } from "react-icons/tb";
+import { VscGithub } from "react-icons/vsc";
+import { BiShow, BiHide } from "react-icons/bi";
+import { FcGoogle } from "react-icons/fc";
 import LoginTheme from "../../assets/login-theme1.png";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../config/firebase";
 import { toast } from "react-toastify";
+import { validateEmail } from "../../helpers/general";
 
 const Login = (props) => {
   let navigate = useNavigate();
-  const { setUserData, userInfo } = props;
+  const { onUserEmailLogin, onGoogleLogin, onGitHubLogin, onMetaLogin } = props;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  console.log(userInfo);
+  const [showPassword, setShowPassword] = useState(false);
 
   const onLogin = (e) => {
     e.preventDefault();
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        setUserData(user);
-        navigate("/");
-      })
-      .catch((error) => {
-        const errorMessage = error?.message ?? "Something went wrong!!";
-        console.log(error.message, "error");
-        toast.error(errorMessage);
-      });
+    const successMethod = () => navigate("/");
+    const errorMethod = (error) => toast.error(error);
+    onUserEmailLogin(email, password, successMethod, errorMethod);
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const onSocialMediaLogin = (media) => {
+    const successMethod = () => {};
+    const errorMethod = (error) => toast.error(error);
+    switch (media) {
+      case "google":
+        onGoogleLogin(successMethod, errorMethod);
+        break;
+      case "github":
+        onGitHubLogin(successMethod, errorMethod);
+        break;
+      case "meta":
+        onMetaLogin(successMethod, errorMethod);
+        break;
+
+      default:
+        break;
+    }
   };
 
   return (
@@ -54,37 +73,56 @@ const Login = (props) => {
                     placeholder="Type your username"
                     value={email}
                     onChange={(e) => {
-                      setEmail(e.target.value);
+                      validateEmail(e.target.value) && setEmail(e.target.value);
                     }}
                   />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                  <Form.Label>Password</Form.Label>
+                <Form.Label>Password</Form.Label>
+                <InputGroup className="mb-3 password-field">
                   <Form.Control
-                    type="password"
+                    type={showPassword ? "text" : "password"}
                     placeholder="Type your password"
                     value={password}
                     onChange={(e) => {
                       setPassword(e.target.value);
                     }}
                   />
-                </Form.Group>
+                  <InputGroup.Text
+                    onClick={() => {
+                      togglePasswordVisibility();
+                    }}
+                    className="eye-icon"
+                  >
+                    {showPassword ? <BiShow /> : <BiHide />}
+                  </InputGroup.Text>
+                </InputGroup>
               </Form>
-              <Col lg={4}></Col>
+              <Col lg={4}>
+                <Form.Text
+                  className="verify-email"
+                  onClick={() => navigate("/verify-email")}
+                >
+                  Verify email?
+                </Form.Text>
+              </Col>
               <Col lg={4}></Col>
               <Col lg={4}>
                 <Form.Text
                   className="forgot-password"
                   onClick={() => navigate("/forgotPassword")}
                 >
-                  Forgot password ?
+                  Forgot password?
                 </Form.Text>
               </Col>
               <div className="button-container">
                 <button
                   type="submit"
-                  className="login-btn"
-                  onClick={(e) => onLogin(e)}
+                  className={
+                    email && password.length >= 8
+                      ? "login-btn"
+                      : "login-btn disabled"
+                  }
+                  onClick={email && password.length >= 8 && ((e) => onLogin(e))}
                 >
                   Login
                 </button>
@@ -93,20 +131,32 @@ const Login = (props) => {
                 <Col lg={12}>
                   <h6 className="signup-text">Or Signup using</h6>
                 </Col>
-                <Col lg={3}></Col>
+                <Col lg={2} />
 
-                <Col lg={6} className="social-media-links">
-                  <button type="submit" className="facebook-btn">
-                    <FaFacebookF />
+                <Col lg={8} className="social-media-links">
+                  <button
+                    type="submit"
+                    className="social-media-btn"
+                    onClick={() => onSocialMediaLogin("google")}
+                  >
+                    <FcGoogle />
                   </button>
-                  <button type="submit" className="twitter-btn">
-                    <FiTwitter />
+                  <button
+                    type="submit"
+                    className="social-media-btn"
+                    onClick={() => onSocialMediaLogin("github")}
+                  >
+                    <VscGithub />
                   </button>
-                  <button type="submit" className="google-btn">
-                    <AiOutlineGoogle />
+                  <button
+                    type="submit"
+                    className="social-media-btn blue-btn"
+                    onClick={() => onSocialMediaLogin("meta")}
+                  >
+                    <TbBrandMeta />
                   </button>
                 </Col>
-                <Col lg={3}></Col>
+                <Col lg={2} />
               </Row>
               <Row>
                 <Col lg={12}>
@@ -125,15 +175,20 @@ const Login = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    userInfo: state.login,
-  };
-};
+const mapStateToProps = (state) => ({});
 
 const mapDispatchToProps = (dispatch) => ({
-  setUserData: (userData) => {
-    dispatch(setUserInfo(userData));
+  onUserEmailLogin: (email, password, successMethod, errorMethod) => {
+    dispatch(userEmailLogin(email, password, successMethod, errorMethod));
+  },
+  onGoogleLogin: (successMethod, errorMethod) => {
+    dispatch(googleLogin(successMethod, errorMethod));
+  },
+  onGitHubLogin: (successMethod, errorMethod) => {
+    dispatch(gitHubLogin(successMethod, errorMethod));
+  },
+  onMetaLogin: (successMethod, errorMethod) => {
+    dispatch(metaLogin(successMethod, errorMethod));
   },
 });
 

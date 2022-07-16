@@ -13,8 +13,8 @@ code {
     monospace;
 }
 .disabled {
-  cursor: default;
-  opacity: 0.5;
+  cursor: default !important;
+  opacity: 0.2;
 }
 .container-fluid {
   padding-left: 0 !important;

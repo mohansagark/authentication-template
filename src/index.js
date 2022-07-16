@@ -9,6 +9,8 @@ import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import { ToastContainer } from "react-toastify";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import "react-toastify/dist/ReactToastify.css";
+import GlobalSpinner from "./components/GlobalSpinner";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -17,8 +19,20 @@ root.render(
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter>
+          <GlobalSpinner />
           <Router />
-          <ToastContainer autoClose={5000} />
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme={'colored'}
+          />
         </BrowserRouter>
       </PersistGate>
     </Provider>

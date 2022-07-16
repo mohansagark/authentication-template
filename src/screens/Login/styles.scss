@@ -13,9 +13,24 @@
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   }
+  .password-field {
+    width: 94.5%;
+  }
+  .eye-icon {
+    cursor: pointer;
+    font-size: 20px;
+  }
+  .verify-email {
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .form-label {
+    font-size: 12px;
+  }
   .forgot-password {
     margin-right: 15px;
-    font-size: 9px;
+    font-size: 12px;
     font-weight: bold;
     justify-content: flex-end;
     display: flex;
@@ -29,9 +44,15 @@
     margin: 15px 12px;
     color: midnightblue;
   }
+  h1 {
+    font-size: 32px;
+  }
   .form-label {
     margin-left: 15px;
     color: midnightblue;
+  }
+  .form-control {
+    font-size: 14px;
   }
   .login-btn {
     background-image: linear-gradient(
@@ -42,12 +63,13 @@
       midnightblue,
       #02386e
     );
+    font-size: 14px;
     color: white !important;
     width: 50%;
     margin: auto;
     margin-top: 25px;
     margin-left: 25%;
-    height: 35px;
+    height: 40px;
     border-radius: 5px;
     border: 1px solid #9269bc;
   }
@@ -56,46 +78,23 @@
     justify-content: space-evenly;
     margin-top: 20px;
   }
-  .facebook-btn {
-    width: 35px;
-    height: 35px;
-    border-radius: 18px;
-    background-color: #353698;
-    border: 1px solid #353698;
-    color: white;
-    font-size: 16px;
+  .social-media-btn {
+    background-color: transparent;
+    border: transparent;
+    color: black;
+    font-size: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
   }
-  .twitter-btn {
-    width: 35px;
-    height: 35px;
-    border-radius: 18px;
-    background-color: #6ad3e1;
-    border: 1px solid #6ad3e1;
-    color: white;
-    font-size: 16px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .google-btn {
-    width: 35px;
-    height: 35px;
-    border-radius: 18px;
-    background-color: #982430;
-    border: 1px solid #982430;
-    color: white;
-    font-size: 16px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  .blue-btn {
+    color: blue;
   }
   .signup-text {
     text-align: center;
     color: #3f4554;
     margin-top: 30px;
+    font-size: 12px;
     label {
       cursor: pointer;
     }

@@ -6,6 +6,7 @@ import ToDoApp from "../screens/ToDoApp";
 import ProfileComponent from "../screens/MyProfile";
 import SignupComponent from "../screens/Signup";
 import ForgotPasswordComponent from "../screens/ForgotPassword";
+import VerifyEmail from "../screens/VerifyEmail";
 
 export const loginRoutes = [
   {
@@ -30,6 +31,11 @@ export const publicRoutes = [
     name: "ForgotPassword",
     path: "/forgotPassword",
     element: <ForgotPasswordComponent />,
+  },
+  {
+    name: "VerifyEmail",
+    path: "/verify-email",
+    element: <VerifyEmail />,
   },
 ];
 
