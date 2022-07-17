@@ -1,19 +1,22 @@
 .loginContainer {
-  overflow: hidden;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   background-image: linear-gradient(to right top, #fff);
   .login-form-bg {
+    width: 80%;
     margin: auto;
-    padding: 0 2% 2% 0;
+    padding: 0 1rem 1rem 0;
     height: 100%;
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   }
   .password-field {
-    width: 94.5%;
+    width: 95%;
+  }
+  .theme-image {
+    min-width: 300px;
   }
   .eye-icon {
     cursor: pointer;
@@ -27,8 +30,14 @@
   .form-label {
     font-size: 12px;
   }
+  .sub-options{
+    width: 91%;
+    margin:auto 15px;
+    .col{
+      padding:0
+    }
+  }
   .forgot-password {
-    margin-right: 15px;
     font-size: 12px;
     font-weight: bold;
     justify-content: flex-end;
@@ -36,7 +45,7 @@
     cursor: pointer;
   }
   .form-control {
-    width: 92%;
+    width: 100%;
     margin-left: 15px;
   }
   .text-center {
@@ -99,5 +108,37 @@
     label:hover {
       text-decoration: underline !important;
     }
+  }
+}
+
+.desktop {
+  .loginContainer {
+    overflow: hidden;
+  }
+}
+
+.phone {
+  .loginContainer {
+    .theme-image {
+      min-width: 300px;
+    }
+  }
+}
+
+.tablet {
+  .loginContainer {
+  }
+}
+
+.phone,
+.tablet {
+  .loginContainer {
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+  .login-form-bg{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 0;
   }
 }

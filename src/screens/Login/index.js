@@ -57,17 +57,21 @@ const Login = (props) => {
   return (
     <Container fluid className="loginContainer">
       <Row>
-        <Col lg={2}></Col>
-        <Col lg={8} className="login-form-bg">
+        <Col lg={10} className="login-form-bg">
           <Row style={{ height: "100%" }} className="align-items-center">
-            <Col>
-              <img width="100%" src={LoginTheme} alt="login" />
+            <Col xs md={6}>
+              <img
+                width={"100%"}
+                src={LoginTheme}
+                className="theme-image"
+                alt="login"
+              />
             </Col>
-            <Col>
+            <Col xs md={6}>
+              <h1 className="text-center">React Auth Template</h1>
               <Form>
-                <h1 className="text-center">React Auth Template</h1>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                  <Form.Label>Username</Form.Label>
+                <Form.Label>Username</Form.Label>
+                <InputGroup className="mb-3 password-field">
                   <Form.Control
                     type="username"
                     placeholder="Type your username"
@@ -76,7 +80,7 @@ const Login = (props) => {
                       validateEmail(e.target.value) && setEmail(e.target.value);
                     }}
                   />
-                </Form.Group>
+                </InputGroup>
                 <Form.Label>Password</Form.Label>
                 <InputGroup className="mb-3 password-field">
                   <Form.Control
@@ -97,23 +101,24 @@ const Login = (props) => {
                   </InputGroup.Text>
                 </InputGroup>
               </Form>
-              <Col lg={4}>
-                <Form.Text
-                  className="verify-email"
-                  onClick={() => navigate("/verify-email")}
-                >
-                  Verify email?
-                </Form.Text>
-              </Col>
-              <Col lg={4}></Col>
-              <Col lg={4}>
-                <Form.Text
-                  className="forgot-password"
-                  onClick={() => navigate("/forgotPassword")}
-                >
-                  Forgot password?
-                </Form.Text>
-              </Col>
+              <Row className="sub-options">
+                <Col>
+                  <Form.Text
+                    className="verify-email"
+                    onClick={() => navigate("/verify-email")}
+                  >
+                    Verify email?
+                  </Form.Text>
+                </Col>
+                <Col>
+                  <Form.Text
+                    className="forgot-password"
+                    onClick={() => navigate("/forgotPassword")}
+                  >
+                    Forgot password?
+                  </Form.Text>
+                </Col>
+              </Row>
               <div className="button-container">
                 <button
                   type="submit"
@@ -169,7 +174,6 @@ const Login = (props) => {
             </Col>
           </Row>
         </Col>
-        <Col lg={2}></Col>
       </Row>
     </Container>
   );
