@@ -64,6 +64,9 @@ const HamburgerMenu = ({ onLogout }) => {
               <p>Logout</p>
             </li>
           </ul>
+          <li className="copyrights">
+            Copyrights reserved - Authentication Template © 2022
+          </li>
         </nav>
 
         <div className="dark-blue" id="blue"></div>

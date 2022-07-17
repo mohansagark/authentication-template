@@ -159,6 +159,18 @@
       animation-delay: 300ms;
     }
   }
+
+  .copyrights {
+    position: absolute;
+    display: flex;
+    left: 10%;
+    bottom: 2%;
+    list-style: none;
+    font-size: 10px;
+    color: #fff;
+    line-height: 2.2;
+    letter-spacing: 1px;
+  }
 }
 
 .phone {
