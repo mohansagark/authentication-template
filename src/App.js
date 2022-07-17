@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { Container, Card, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { MdLogout, MdMenu } from "react-icons/md";
+import { MdLogout } from "react-icons/md";
 import { IoMdPerson } from "react-icons/io";
 import { connect } from "react-redux";
 import { resetUserInfo } from "./store/actions/login.actions";
 import { ConditionalModal } from "./components/Modal";
 import menuItems from "./constants/menuItems.json";
 import "./App.scss";
+import HamburgerMenu from "./components/HamburgerMenu";
 
 function App({ onLogout }) {
   let navigate = useNavigate();
@@ -16,6 +17,7 @@ function App({ onLogout }) {
   const logout = () => {
     onLogout();
   };
+
   return (
     <Container fluid className="auth-template-container">
       <Row className="nav">
@@ -47,17 +49,6 @@ function App({ onLogout }) {
           <MdLogout size={30} />
         </Col>
         <Col xs={2} sm={2} md={2} className="menu-nav" />
-        <Col
-          xs={1}
-          sm={1}
-          md={1}
-          className="menu-icon menu-nav"
-          onClick={() => {
-            setShowLogoutModal(true);
-          }}
-        >
-          <MdMenu size={40} />
-        </Col>
       </Row>
       <Row className="menu-tiles-container">
         {menuItems.map((item, index) => {
@@ -88,6 +79,13 @@ function App({ onLogout }) {
           logout();
         }}
       />
+      <div className="menu-nav">
+        <HamburgerMenu
+          onLogout={() => {
+            setShowLogoutModal(true);
+          }}
+        />
+      </div>
     </Container>
   );
 }
