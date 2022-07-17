@@ -15,7 +15,6 @@
     height: 80vh;
     .card {
       background-image: linear-gradient(to bottom right, #ff512f, #dd2476);
-      width: 95%;
       height: 20vh;
       cursor: pointer;
       border-radius: 0px;
@@ -53,6 +52,16 @@
       fill: #dd2476;
     }
   }
+
+  .menu-icon {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    cursor: pointer;
+    svg {
+      fill: #dd2476;
+    }
+  }
   .links {
     display: flex;
     padding-left: 5vw;
@@ -72,18 +81,17 @@
   }
 }
 
-  .rc-dropdown {
-    .rc-menu {
-      width: 120px;
-      padding: 10px;
-      .rc-menu-item {
-        padding: 5px;
-        cursor: pointer;
-      }
+.rc-dropdown {
+  .rc-menu {
+    width: 120px;
+    padding: 10px;
+    .rc-menu-item {
+      padding: 5px;
+      cursor: pointer;
     }
   }
+}
 
-// Ipad
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
   .auth-template-container .menu-tiles-container {
     margin-right: 0vw;
@@ -100,14 +108,19 @@
 .phone {
   .auth-template-container {
     .menu-tiles-container {
-      margin-left: 10vw;
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
-      height: 400px;
+      justify-content: space-evenly;
+      margin-right: 5vw;
+      margin-left: 5vw;
+      scroll .card {
+        margin-bottom: 40px;
+        width: 10vh;
+        height: 10vh;
+      }
     }
     .card {
-      width: 100%;
       height: 20vh;
     }
     .links {
@@ -130,19 +143,22 @@
   }
 }
 
-.phone {
+.phone,
+.tablet {
   .auth-template-container {
-    .menu-tiles-container {
-      justify-content: space-evenly;
-      margin-right: 5vw;
-      margin-left: 5vw;
-      padding-top: 40px;
-      overflow: scroll;
-      scroll .card {
-        margin-bottom: 40px;
-        width: 10vh;
-        height: 10vh;
-      }
+    .desktop-nav {
+      display: none;
+    }
+    .menu-nav {
+      padding: 0;
+    }
+  }
+}
+
+.desktop {
+  .auth-template-container {
+    .menu-nav {
+      display: none;
     }
   }
 }

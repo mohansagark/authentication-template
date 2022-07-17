@@ -1,13 +1,13 @@
-import "./App.scss";
+import { useState } from "react";
 import { Container, Card, Row, Col } from "react-bootstrap";
-import menuItems from "./constants/menuItems.json";
 import { useNavigate } from "react-router-dom";
-import { MdLogout } from "react-icons/md";
+import { MdLogout, MdMenu } from "react-icons/md";
+import { IoMdPerson } from "react-icons/io";
 import { connect } from "react-redux";
 import { resetUserInfo } from "./store/actions/login.actions";
-import { useState } from "react";
 import { ConditionalModal } from "./components/Modal";
-import ProfileHoc from "./helpers/profile";
+import menuItems from "./constants/menuItems.json";
+import "./App.scss";
 
 function App({ onLogout }) {
   let navigate = useNavigate();
@@ -19,30 +19,50 @@ function App({ onLogout }) {
   return (
     <Container fluid className="auth-template-container">
       <Row className="nav">
-        <Col xs={9} sm={9} md={9} className="links">
+        <Col xs={8} sm={8} md={8} className="links">
           <span className="project-title">Auth Template</span>
         </Col>
-
-        <Col xs={2} sm={2} md={2} className="profile-icon">
-          <ProfileHoc />
+        <Col xs={2} sm={2} md={2} className="desktop-nav" />
+        <Col
+          xs={1}
+          sm={1}
+          md={1}
+          className="profile-icon desktop-nav"
+          onClick={() => {
+            navigate("/myProfile");
+          }}
+        >
+          <IoMdPerson id="dropdown-basic" size={30} />
         </Col>
 
         <Col
           xs={1}
           sm={1}
           md={1}
-          className="logout-icon"
+          className="logout-icon desktop-nav"
           onClick={() => {
             setShowLogoutModal(true);
           }}
         >
           <MdLogout size={30} />
         </Col>
+        <Col xs={2} sm={2} md={2} className="menu-nav" />
+        <Col
+          xs={1}
+          sm={1}
+          md={1}
+          className="menu-icon menu-nav"
+          onClick={() => {
+            setShowLogoutModal(true);
+          }}
+        >
+          <MdMenu size={40} />
+        </Col>
       </Row>
       <Row className="menu-tiles-container">
         {menuItems.map((item, index) => {
           return (
-            <Col key={String(index)} lg={3} sm={12} md={3} xs={12}>
+            <Col key={String(index)} lg={3} md={4} sm={4} xs={12}>
               <Card
                 key={item.id}
                 onClick={() => {
