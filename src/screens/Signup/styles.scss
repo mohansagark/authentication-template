@@ -1,20 +1,13 @@
 .signUpContainer {
-  overflow: hidden;
   display: flex;
   height: 100vh;
   justify-content: center;
   align-items: center;
   background-image: linear-gradient(to right top, #fff);
-  .back-icon {
-    position: absolute;
-    top: 4%;
-    left: 2%;
-    border-radius: 50%;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  }
   .login-form-bg {
+    width: 80%;
     margin: auto;
-    padding: 0 2% 2% 0;
+    padding: 0 1rem 1rem 0;
     height: 100%;
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -90,5 +83,33 @@
     text-align: center;
     color: #3f4554;
     margin-top: 30px;
+  }
+}
+
+.desktop {
+  .signUpContainer {
+    overflow: hidden;
+  }
+  form {
+    padding-right: 20px;
+  }
+}
+
+.phone,
+.tablet {
+  .signUpContainer {
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+  .theme-image {
+    min-width: 300px;
+  }
+  .login-form-bg {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  form {
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }

@@ -92,13 +92,17 @@ const SignUpComponent = ({ onSignUp }) => {
   return (
     <Container fluid className="signUpContainer">
       <Row>
-        <Col lg={2}></Col>
-        <Col lg={8} className="login-form-bg">
+        <Col lg={10} className="login-form-bg">
           <Row style={{ height: "100%" }} className="align-items-center">
-            <Col>
-              <img width="100%" src={SignUpTheme} alt="login" />
+            <Col xs md={6}>
+              <img
+                width="100%"
+                src={SignUpTheme}
+                alt="login"
+                className="theme-image"
+              />
             </Col>
-            <Col>
+            <Col xs md={6}>
               <Form>
                 <h1 className="text-center">Sign Up</h1>
                 <Form.Group className="mb-3" controlId="formBasicFirstName">
@@ -231,7 +235,6 @@ const SignUpComponent = ({ onSignUp }) => {
             </Col>
           </Row>
         </Col>
-        <Col lg={2}></Col>
       </Row>
     </Container>
   );

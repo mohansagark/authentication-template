@@ -30,11 +30,11 @@
   .form-label {
     font-size: 12px;
   }
-  .sub-options{
+  .sub-options {
     width: 91%;
-    margin:auto 15px;
-    .col{
-      padding:0
+    margin: auto 15px;
+    .col {
+      padding: 0;
     }
   }
   .forgot-password {
@@ -125,18 +125,13 @@
   }
 }
 
-.tablet {
-  .loginContainer {
-  }
-}
-
 .phone,
 .tablet {
   .loginContainer {
     margin-top: 50px;
     margin-bottom: 50px;
   }
-  .login-form-bg{
+  .login-form-bg {
     padding-top: 20px;
     padding-bottom: 20px;
     padding-right: 0;
