@@ -2,7 +2,7 @@
   overflow: hidden;
   height: 100vh;
   .divider-1 {
-    height: 40%;
+    height: 30%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -18,17 +18,14 @@
   }
   .forgotPs-title {
     color: white;
-    margin-left: 45px;
   }
   .forgotPs-form {
     box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px,
       rgba(0, 0, 0, 0.1) 0px 2px 4px 0px,
       rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
     background-color: white;
-    width: 25%;
     position: absolute;
-    top: 30vh;
-    left: 38.5%;
+    top: 20vh;
     margin: auto;
     display: flex;
     flex-direction: column;
@@ -69,5 +66,32 @@
     display: flex;
     align-items: center;
     margin: 20px auto;
+  }
+}
+
+.phone {
+  .verify-email-container {
+    .forgotPs-form {
+      width: 80%;
+      left: 10%;
+    }
+  }
+}
+
+.tablet {
+  .verify-email-container {
+    .forgotPs-form {
+      width: 60%;
+      left: 20%;
+    }
+  }
+}
+
+.desktop {
+  .verify-email-container {
+    .forgotPs-form {
+      width: 40%;
+      left: 30%;
+    }
   }
 }

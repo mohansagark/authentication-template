@@ -36,7 +36,7 @@ const VerifyEmail = ({ onResendVerificationEmail }) => {
       </Container>
       <Container fluid className="divider-2">
         <Row>
-          <Col lg={4} className="forgotPs-form">
+          <Col lg={3} md={6} sm={8} className="forgotPs-form">
             <FiMail size={100} className="forgotPs-img" color={"#191970"} />
             <h1 className="forgotPs-label">Verify Email</h1>
             <Form.Text className="forgotPs-desc">

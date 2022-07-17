@@ -36,7 +36,7 @@ const ForgotPasswordComponent = ({ onForgotPassword }) => {
       </Container>
       <Container fluid className="divider-2">
         <Row>
-          <Col lg={4} className="forgotPs-form">
+          <Col lg={3} md={6} sm={8} className="forgotPs-form">
             <RiLockPasswordFill
               className="forgotPs-img"
               size={100}
