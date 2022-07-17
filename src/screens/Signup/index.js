@@ -91,7 +91,7 @@ const SignUpComponent = ({ onSignUp }) => {
 
   return (
     <Container fluid className="signUpContainer">
-      <Row>
+      <Row className="top-row">
         <Col lg={10} className="login-form-bg">
           <Row style={{ height: "100%" }} className="align-items-center">
             <Col xs md={6}>

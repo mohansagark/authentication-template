@@ -99,10 +99,14 @@
 .phone,
 .tablet {
   .signUpContainer {
-    margin-top: 50px;
-    margin-bottom: 50px;
+    padding-top: 50px;
     overflow-x: hidden;
     max-width: 100vw;
+    .top-row {
+      margin-top: 50px;
+      margin-bottom: 50px;
+      padding-top: 50px;
+    }
   }
   .theme-image {
     min-width: 300px;
