@@ -98,8 +98,9 @@
 .phone,
 .tablet {
   .signUpContainer {
-    margin-top: 150px;
-    margin-bottom: 150px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    overflow-x: hidden;
   }
   .theme-image {
     min-width: 300px;
