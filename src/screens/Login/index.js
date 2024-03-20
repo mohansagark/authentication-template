@@ -28,7 +28,8 @@ const Login = (props) => {
     e.preventDefault();
     const successMethod = () => navigate("/");
     const errorMethod = (error) => toast.error(error);
-    onUserEmailLogin(email, password, successMethod, errorMethod);
+    if (validateEmail(email) && password >= 8)
+      onUserEmailLogin(email, password, successMethod, errorMethod);
   };
 
   const togglePasswordVisibility = () => {
@@ -75,9 +76,8 @@ const Login = (props) => {
                   <Form.Control
                     type="username"
                     placeholder="Type your username"
-                    value={email}
                     onChange={(e) => {
-                      validateEmail(e.target.value) && setEmail(e.target.value);
+                      setEmail(e.target.value);
                     }}
                   />
                 </InputGroup>
@@ -86,7 +86,6 @@ const Login = (props) => {
                   <Form.Control
                     type={showPassword ? "text" : "password"}
                     placeholder="Type your password"
-                    value={password}
                     onChange={(e) => {
                       setPassword(e.target.value);
                     }}
@@ -127,7 +126,7 @@ const Login = (props) => {
                       ? "login-btn btn"
                       : "login-btn btn disabled"
                   }
-                  onClick={email && password.length >= 8 && ((e) => onLogin(e))}
+                  onClick={onLogin}
                 >
                   Login
                 </button>
